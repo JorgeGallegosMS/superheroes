@@ -28,6 +28,12 @@ class Armor:
         block = random.randint(0, max_block)
         return block
 
+class Weapon(Ability):
+    def attack(self):
+        max_damage = self.attack_strength
+        damage = random.randint(max_damage//2, max_damage)
+        return damage
+
 class Hero:
     def __init__(self, name, starting_health=100):
         '''Instance properties:
@@ -107,10 +113,10 @@ class Hero:
 if __name__ == '__main__':
     hero1 = Hero("Wonder Woman")
     hero2 = Hero("Dumbledore")
-    ability1 = Ability("Super Speed", 300)
-    ability2 = Ability("Super Eyes", 130)
-    ability3 = Ability("Wizard Wand", 80)
-    ability4 = Ability("Wizard Beard", 20)
+    ability1 = Weapon("Super Speed", 300)
+    ability2 = Weapon("Super Eyes", 130)
+    ability3 = Weapon("Wizard Wand", 80)
+    ability4 = Weapon("Wizard Beard", 20)
     hero1.add_ability(ability1)
     hero1.add_ability(ability2)
     hero2.add_ability(ability3)
