@@ -109,16 +109,43 @@ class Hero:
                     print(f"{self.name} has won the match")
                     break
 
+class Team:
+    def __init__(self, name):
+        self.name = name
+        self.heroes = []
+
+    def remove_hero(self, name):
+        heroes = self.heroes
+        for index,hero in enumerate(heroes):
+            if name == hero.name:
+                heroes.pop(index)
+                print(f"{hero.name} has been removed from the team")
+
+        return 0
+
+    def view_all_heroes(self):
+        heroes = self.heroes
+        if len(heroes) != 0:
+            for hero in heroes:
+                print(hero.name)
+        else:
+            print("Could not find any heroes")
+
+    def add_hero(self, hero):
+        self.heroes.append(hero)
+
 
 if __name__ == '__main__':
     hero1 = Hero("Wonder Woman")
     hero2 = Hero("Dumbledore")
-    ability1 = Weapon("Super Speed", 300)
-    ability2 = Weapon("Super Eyes", 130)
-    ability3 = Weapon("Wizard Wand", 80)
-    ability4 = Weapon("Wizard Beard", 20)
-    hero1.add_ability(ability1)
-    hero1.add_ability(ability2)
-    hero2.add_ability(ability3)
-    hero2.add_ability(ability4)
-    hero1.fight(hero2)
+    # ability1 = Weapon("Super Speed", 300)
+    # ability2 = Weapon("Super Eyes", 130)
+    # ability3 = Weapon("Wizard Wand", 80)
+    # ability4 = Weapon("Wizard Beard", 20)
+    # hero1.add_ability(ability1)
+    # hero1.add_ability(ability2)
+    # hero2.add_ability(ability3)
+    # hero2.add_ability(ability4)
+    # hero1.fight(hero2)
+    team1 = Team("Best team ever")
+    team1.view_all_heroes()
