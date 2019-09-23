@@ -48,6 +48,8 @@ class Hero:
         self.name = name
         self.starting_health = starting_health
         self.current_health = starting_health
+        self.kills = 0
+        self.deaths = 0
 
     def add_ability(self, ability):
         '''Add ability to list of abilities'''
@@ -104,10 +106,20 @@ class Hero:
                         continue
                     else:
                         print(f"{opponent.name} has won the match")
+                        self.add_death(1)
+                        opponent.add_kill(1)
                         break
                 else:
                     print(f"{self.name} has won the match")
+                    self.add_kill(1)
+                    opponent.add_death(1)
                     break
+
+    def add_kill(self, num_kills):
+        self.kills += num_kills
+
+    def add_death(self, num_deaths):
+        self.deaths += num_deaths
 
 class Team:
     def __init__(self, name):
