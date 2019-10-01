@@ -121,6 +121,16 @@ class Hero:
     def add_death(self, num_deaths):
         self.deaths += num_deaths
 
+    def add_weapon(self, weapon):
+        """Add weapon to self.abilities"""
+        self.abilities.append(weapon)
+
+    def add_armor(self, armor):
+        """Add armor to self.armors
+            armor: Armor Object
+        """
+        self.armors.appen(armor)
+
 class Team:
     def __init__(self, name):
         self.name = name
@@ -159,6 +169,62 @@ class Team:
     def stats(self):
         for hero in self.heroes:
             print(f"{hero.name} has {hero.kills} kills and {hero.deaths} deaths")
+
+class Arena:
+    def __init__(self):
+        self.team_one = list()
+        self.team_two = list()
+
+    def create_ability(self):
+        print("Create Ability")
+        name = input("Ability name: ")
+        strength = input("Ability Strength(1-100): ")
+
+        ability = Ability(name, strength)
+
+        return ability
+
+    def create_weapon(self):
+        print("Create Weapon")
+        name = input("Weapon Name: ")
+        strength = int(input("Weapon Strength(1-100): "))
+
+        weapon = Weapon(name, strength)
+
+        return weapon
+
+    def create_armor(self):
+        print("Create Armor")
+        name = input("Armor Name: ")
+        block_amount = int(input("Armor Amount(1-100)")) 
+
+        armor = Armor(name, block_amount)
+
+        return armor
+
+    def create_hero(self):
+        print("Create a Hero")
+        name = input("Name your Hero: ")
+        my_hero = Hero(name)
+        customizing = True
+
+        while customizing:
+            option = input("What would you like to do?\n'A': Add ability\n'W': Add a weapon\n'D': Add Armor\n'S': Submit").lower()
+            if option == 'a':
+                ability = self.create_ability()
+                my_hero.add_ability(ability)
+            elif option == 'w':
+                weapon = self.create_weapon()
+                my_hero.add_ability(weapon)
+            elif option == 'd':
+                armor = self.create_armor()
+                my_hero.add_armor(armor)
+            elif option == 's':
+                customizing = False
+
+        return my_hero
+
+    
 
 
 if __name__ == '__main__':
