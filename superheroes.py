@@ -71,18 +71,18 @@ class Hero:
 
         return total
 
-    def defend(self, damage):
+    def defend(self):
         '''Runs `block` method on each armor.
           Returns sum of all blocks
         '''
-        total = damage
+        total = 0
         for armor in self.armors:
-            total -= armor.block()
+            total += armor.block()
 
         return total
 
     def take_damage(self, damage):
-        self.current_health -= self.defend(damage)
+        self.current_health -= damage - self.defend()
 
     def is_alive(self):
         return not self.current_health <= 0
@@ -145,6 +145,20 @@ class Team:
 
     def add_hero(self, hero):
         self.heroes.append(hero)
+
+    def attack(self, enemy_team):
+        my_hero = self.heroes[random.randint(0, len(self.heroes) - 1)]
+        enemy_hero = enemy_team.heroes[random.randint(0, len(enemy_team.heroes) - 1)]
+
+        my_hero.fight(enemy_hero)
+
+    def revive_heroes(self, health=100):
+        for hero in self.heroes:
+            hero.current_health = health
+
+    def stats(self):
+        for hero in self.heroes:
+            print(f"{hero.name} has {hero.kills} kills and {hero.deaths} deaths")
 
 
 if __name__ == '__main__':
